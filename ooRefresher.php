@@ -1,15 +1,42 @@
 <?php
-
 class User
 {
-
+    public $username;
+    private $email;
+    public function __construct($username, $email)
+    {
+        //$this->username = 'ken';
+        $this->username = $username;
+        $this->email = $email;
+    }
+    public function addFriend()
+    {
+        //return "added a new friend";
+        return "$this->username just added a new friend";
+    }
+    // getters
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    // setters
+    public function setEmail($username)
+    {
+        // check that an @ symbol exists to prove it is an email
+        // via string position
+        if (strpos($username, '@') > -1) {
+            $this->email = $username;
+        };
+    }
 }
+$userOne = new User('mario', 'mario@thenetninja.co.uk');
+$userTwo = new User('luigi', 'luigi@thenetninja.co.uk');
+echo $userOne->getEmail() . '<br>';
+echo $userTwo->getEmail() . '<br>';
 
-$userOne = new User();
-$userTwo = new User();
+$userTwo->setEmail('yoshi@thenetninja.co.uk');
 
-echo 'the class is ' . get_class($userOne);
-
+echo $userTwo->getEmail() . '<br>';
 ?>
 
 <!DOCTYPE html>
