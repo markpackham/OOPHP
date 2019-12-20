@@ -1,56 +1,10 @@
 <?php
-class User
-{
-    public $username;
-    protected $email;
-    public $role = 'member';
-    public function __construct($username, $email)
-    {
-        //$this->username = 'ken';
-        $this->username = $username;
-        $this->email = $email;
-    }
-    public function addFriend()
-    {
-        //return "added a new friend";
-        return "$this->username just added a new friend";
-    }
-    public function message()
-    {
-        return "$this->email sent a new message";
-    }
-    // getters
-    public function getEmail()
-    {
-        return $this->email;
-    }
-    // setters
-    public function setEmail($username)
-    {
-        if (strpos($username, '@') > -1) {
-            $this->email = $username;
-        };
-    }
+
+if (isset($_POST['submit'])) {
+    // validate entires
+    echo "submitted"
+    ;
 }
-class AdminUser extends User
-{
-    public $level;
-    public $role = 'admin';
-    public function __construct($username, $email, $level)
-    {
-        parent::__construct($username, $email);
-        $this->level = $level;
-    }
-    public function message()
-    {
-        return "admin $this->email sent a new message";
-    }
-}
-$userOne = new User('mario', 'mario@thenetninja.co.uk');
-$userTwo = new User('luigi', 'luigi@thenetninja.co.uk');
-$userThree = new AdminUser('yoshi', 'yoshi@thenetninja.co.uk', 5);
-echo $userOne->message() . '<br>';
-echo $userThree->message() . '<br>';
 ?>
 
 <!DOCTYPE html>
@@ -59,9 +13,21 @@ echo $userThree->message() . '<br>';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <title>Object Oriented PHP</title>
 </head>
 <body>
-
+<div class="new-user">
+<h2>Create new user</h2>
+<!-- PHP_SELF to use the PHP already in this file -->
+<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+<label>Username:</label>
+<input type="text" name="username">
+<label for="">Email:</label>
+<!-- we're not using Html5's defeault "email" type validation
+for this demo -->
+<input type="text" name="email">
+<input type="submit" value="Submit" name="submit">
+</form></div>
 </body>
 </html>
